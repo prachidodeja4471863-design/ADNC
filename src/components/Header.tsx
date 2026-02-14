@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink as RouterNavLink, useLocation } from "react-router-dom";
+import { NavLink } from "./NavLink";
 
 const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -105,7 +106,7 @@ const Header: React.FC = () => {
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="block py-2 text-base font-medium text-gray-700"
+                className={({ isActive }) => `block py-2 px-3 rounded-md text-base font-medium transition-colors ${isActive ? "bg-emerald-100 text-emerald-700" : "text-gray-700 hover:bg-gray-100"}`}
                 ref={i === 0 ? (el) => (firstLinkRef.current = el as HTMLAnchorElement | null) : undefined}
               >
                 {n.label}
